@@ -53,11 +53,11 @@ lines_hash = Hash.new { |h, k| h[k] = Hash.new(0) }
 # user input {{{1
 
 # log to question.log file
-logger = logger_output("lyrics.log")
+logger = logger_output("log/lyrics.log")
 logger.info("Program started...")
 
 # Create a lyrics file variable
-root = "/Users/shadowchaser/Code/Ruby/Projects/lyrics"
+root = "/Users/shadowchaser/Code/Ruby/Projects/lyrics-app/lyrics"
 
 # Get all files from the directory we have passed in
 # if directory is empty brek program
@@ -67,17 +67,9 @@ local_files = sub_dir(root)
 exit if local_files.nil?
 logger.info("created a lyrics option list")
 
-# Loop over files generated from the local_files method and print only JSON files
-color_title("Lyrics files found")
-
-# Permanently remove the filepaths from the Array that are not JSON
-pre = local_files.count
-local_files.keep_if { |f| File.extname(f) == ".json" }
-pro = local_files.count
-logger.info("Found: #{pro} lyrics files. Removed:#{(pre - pro)} files")
-
 # Print the filenames as an option once they has been trimmed
-local_files.each_with_index { |f, i| puts "#{i})" + " " + "#{f.split(/\//)[-1]}" }
+puts "#{divide}"
+local_files.each_with_index { |f, i| puts "#{blue(i)})" + " " + "#{f.split(/\//)[-1]}" }
 puts "#{divide}"
 
 # Set a boolean value to break the loop
